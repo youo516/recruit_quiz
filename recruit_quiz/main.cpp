@@ -78,7 +78,7 @@ int main()
 
 	//‡—ñ
 	x = uniform_int_distribution<>(3, 7)(rand);
-	y = uniform_int_distribution<>(1, x)(rand);
+	y = uniform_int_distribution<>(2, x)(rand);
 	z = 1;
 	for (int i = 0; i < y; i++)
 	{
