@@ -1,15 +1,7 @@
 #include <iostream>
-#include <string>
-#include <vector>
 #include <random>
+#include "question.h"
 using namespace std;
-
-//
-struct Question
-{
-	string q;
-	string a;
-};
 
 //Å‘åŒö–ñ”‚ğ‹‚ß‚é
 int gcd(int a, int b)
