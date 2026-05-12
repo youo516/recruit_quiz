@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <vector>
 #include <random>
 #include "question.h"
 #include "exam_japanese.h"
