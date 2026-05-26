@@ -6,3 +6,6 @@ QuestionList CreateKanjiExam();
 
 //Šµ—p‹å‚ÌˆÓ–¡‚ğ“š‚¦‚é–â‘è‚ğì¬
 QuestionList CreateIdiomExam();
+
+//“¯‰¹ˆÙ‹`Œê‚Ì–â‘è‚ğì¬‚·‚é
+QuestionList CreateHomophoneExam();
