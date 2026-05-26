@@ -130,6 +130,48 @@ QuestionList CreateIdiomExam()
 	return questions;
 }
 
+//対義語の問題を作成
+QuestionList CreateAntonymExam()
+{
+	const struct {
+		const char* kanji[2];
+	}data[] = {
+		{"意図", "恣意"}, {"需要", "供給"},
+		{"故意", "過失"}, {"曖昧", "明瞭"},
+		{"緊張", "弛緩"}, {"過疎", "過密"}, 
+		{"栄転", "左遷"}, {"消費", "生産"}, 
+		{"異端", "正統"}, {"尊敬", "軽蔑"},
+	};
+
+	constexpr int quizCount = 5;
+	QuestionList questions;
+	questions.reserve(quizCount);
+	const vector<int> indices = CreateRandomIndices(size(data));
+	random_device rd;
+
+	for (int i = 0; i < quizCount; i++)
+	{
+		//間違った番号をランダムに選ぶ
+		const int correctIndex = indices[i];
+		vector<int> answers = CreateWrongIndices(size(data), correctIndex);
+
+		//ランダムな位置を正しい番号で上書き
+		const int correctNo = uniform_int_distribution<>(1, 4)(rd);
+		answers[correctNo - 1] = correctIndex;
+
+		//問題文を作成
+		const int object = uniform_int_distribution<>(0, 1)(rd);
+		const int other = (object + 1) % 2;
+		string s = "「" + string(data[correctIndex].kanji[object]) + "」の対義語として正しいものを選べ";
+		for (int j = 0; j < 4; j++)
+		{
+			s += "\n	" + to_string(j + 1) + ":" + data[answers[j]].kanji[other];
+		}
+		questions.push_back({ s, to_string(correctNo) });
+	}
+	return questions;
+}
+
 //同音異義の漢字問題を作成
 QuestionList CreateHomophoneExam()
 {
@@ -216,7 +258,7 @@ QuestionList CreateHomophoneExam()
 		string s = "「" + string(e.words[answers[correctNo - 1]].kanji) + "」の意味として正しい番号を選べ";
 		for (int j = 0; j < count; j++)
 		{
-			s += "\n   " + to_string(j + 1) + ":" + e.words[answers[j]].meaning;
+			s += "\n	" + to_string(j + 1) + ":" + e.words[answers[j]].meaning;
 		}
 		questions.push_back({ s, to_string(correctNo) });
 	}
