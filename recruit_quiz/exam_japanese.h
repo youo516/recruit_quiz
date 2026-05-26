@@ -12,3 +12,6 @@ QuestionList CreateHomophoneExam();
 
 //‘Î‹`Œê‚Ì–â‘è‚ğì¬
 QuestionList CreateAntonymExam();
+
+//—Ş‹`Œê‚Ì–â‘è‚ğì¬
+QuestionList CreateSynonymExam();
