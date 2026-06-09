@@ -1,0 +1,37 @@
+#include "exam_english.h"
+#include "utility.h"
+using namespace std;
+
+//英単語の問題を作成
+QuestionList CreateEnglishExam()
+{
+	const struct {
+		const char* word;
+		const char* reading;
+		const char* meaning;
+	}data[]{
+		{"state", "ステート", "状態"},
+		{"business", "ビジネス", "事業、仕事"},
+		{"abstruct", "アブストラクト", "抽象的な"},
+		{"concrete", "コンクリート", "具体的な"},
+		{"digital", "デジタル", "数字で情報を伝える"},
+		{"analogue", "アナログ", "類似している、類似物"},
+		{"exchange", "エクスチェンジ", "交換、両替、為替"},
+		{"infrastructure", "インフラストラクチャ", "下部構造、基盤となる施設や設備"},
+		{"knowledge", "ナレッジ", "知識"},
+		{"credit", "クレジット", "信用"},
+	};
+
+	constexpr int quizCnt = 5;
+	QuestionList questions;
+	questions.reserve(quizCnt);
+	const vector<int> indices = CreateRandomIndices(size(data));
+
+	for (int i = 0; i < quizCnt; i++)
+	{
+		const auto& e = data[indices[i]];
+		questions.push_back({ "「" + string(e.meaning) + "」を意味する英単語を答えよ", e.word });
+	}
+
+	return questions;
+}
