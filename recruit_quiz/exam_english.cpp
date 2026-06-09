@@ -113,9 +113,19 @@ QuestionList CreateEnglishPhraseExam()
 	}data[]{
 		{"too [A] to [B]", "とても[A]なので[B]できない", "The tea was too hot to drink.", "お茶が熱すぎて飲めなかった。", 2,{3, 5}},
 		{"be looking forward to [A]", "[A]を楽しみにする", "I'm looking forward to seeing you.", "私はあなたに会うのを楽しみにしています。", 3,{1, 2, 3}},
-		{"according to [A]", "[A]によると", "According to the weather forcast, today is rain.", "天気予報によると今日は雨だ", 2,{0, 1}},
+		{"according to [A]", "[A]によると", "According to the weather forcast, today is rain.", "天気予報によると今日は雨だ。", 2,{0, 1}},
 		{"as soon as [A]", "[A]するとすぐに", "As soon as I arrive, I'll call you.", "到着したらすぐに連絡します。", 3,{0, 1, 2}},
-		{"be not supposed to[A]", "[A]してはいけないことになっている", "You are not supposed to enter this room.", "この部屋に入ってはいけません", 3,{2, 3, 4}},
+		{"be not supposed to[A]", "[A]してはいけないことになっている", "You are not supposed to enter this room.", "この部屋に入ってはいけません。", 3,{2, 3, 4}},
+		{"be going to [A]", "[A]するつもりだ", "I am going to build a house.", "家を建てるつもりだ。", 2, {2, 3}},
+		{"turn to [A] for [B]", "[A]に[B]を求める", "She turn to the friends for help.", "彼女は友達に助けを求めた。", 2, {1, 2}},
+		{"it is not until [A] that [B]", "[A]して初めて[B]する", "It was not until dawn that the trouble solve.", "夜明けまで問題は解決しなかった。", 3, {1, 2, 4}},
+		{"[A] as well as [B]", "[B]だけでなく[A]も", "He can speak French as well as English.", "彼は英語だけでなくフランス語も話せる。", 2, {4, 5}},
+		{"[A] remain [B]", "[A]が[B]のままでいる", "She remained silent.", "彼女は黙っていた。", 2, {1, 2}},
+		{"both [A] and [B]", "[A]と[B]の両方とも", "This bag is both quality and cheap.", "このカバンは品質が良いうえに安い。", 2, {3, 5}},
+		{"eihter [A] or [B]", "[A]か[B]のどちらか", "Mom says that you can have either a dog or a cat.", "母は、犬か猫のどちらかなら飼ってもいいと言っている。", 4, {1, 5, 6}},
+		{"neither [A] nor [B]", "[A]も[B]もどちらもない", "We have neither the time nor the resources.", "我々には時間も資源もない。", 3, {1, 2, 5}},
+		{"not only [A] but also [B]", "[A]だけでなく[B]も", "He likes not only movies but also books.", "彼は映画だけでなく本も好きだ。", 3, {1, 2, 5}},
+		{"take care of [A]", "[A]の世話をする", "She always takes care of her sister.", "彼女はいつも妹の面倒を見ている。", 3, {2, 3, 4}},
 	};
 
 	constexpr int quizCnt = 5;
