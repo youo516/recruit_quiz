@@ -214,7 +214,7 @@ QuestionList CreateEnglishPhraseExam()
 			string s = "u" + string(data[correctIndex].meaning) + "v‚ÌˆÓ–¡‚Æ‚µ‚Ä³‚µ‚¢”Ô†‚ğ‘I‚×\n";
 			for (int j = 0; j < 3; j++)
 			{
-				s += "\n " + to_string(j + 1) + ":" + data[answers[j]].meaning;
+				s += "\n " + to_string(j + 1) + ":" + data[answers[j]].phrase;
 			}
 
 			questions.push_back({ s, to_string(correctNo) });
