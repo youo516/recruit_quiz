@@ -69,7 +69,7 @@ QuestionList CreateEnglishWordExam()
 		for (int i = 0; i < quizCnt; i++)
 		{
 			const auto& e = data[indices[i]];
-			questions.push_back({ string(e.word) + "の読みをカタカナで答えよ", e.word });
+			questions.push_back({ string(e.word) + "の読みをカタカナで答えよ", e.reading });
 		}
 		break;
 
