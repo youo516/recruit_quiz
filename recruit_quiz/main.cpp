@@ -5,6 +5,7 @@
 #include "question.h"
 #include "exam_japanese.h"
 #include "exam_english.h"
+#include "exam_science.h"
 using namespace std;
 
 //最大公約数を求める
@@ -98,7 +99,7 @@ int main()
 
 	cout << "[リクルート試験対策クイズ]\n";
 
-	cout << "教科を選んでください\n1.数学\n2.国語\n3.英語\n";
+	cout << "教科を選んでください\n1.数学\n2.国語\n3.英語\n4.理科\n";
 	int subject;
 	cin >> subject;
 	if (subject == 2)
@@ -118,6 +119,10 @@ int main()
 		questions = CreateEnglishWordExam();
 		QuestionList phraseExam = CreateEnglishPhraseExam();
 		questions.insert(questions.end(), phraseExam.begin(), phraseExam.end());
+	}
+	else if (subject == 4)
+	{
+		questions = CreatePhysicsExam();
 	}
 
 	for (const auto& e : questions)
