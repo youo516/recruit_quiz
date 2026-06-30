@@ -30,19 +30,49 @@ QuestionList CreatePhysicsExam()
 		int v0 = uniform_int_distribution<>(0, 10)(rd);	//初速
 		int a = uniform_int_distribution<>(1, 5)(rd);	//加速度
 		int t = uniform_int_distribution<>(1, 20)(rd);	//移動時間
-		questions.push_back({ "秒速" + to_string(v0) + "mで移動していた車が、進行方向に大きさ" + to_string(a) + "m/sで等加速度直線運動を始めた。\n" + to_string(t) + "秒後の速度m/sを求めよ。", to_string(v0 + a * t)});
+		questions.push_back({ "秒速" + to_string(v0) + "mで移動していた車が、進行方向に大きさ" + to_string(a) + "m/s^2で等加速度直線運動を始めた。\n" + to_string(t) + "秒後の速度m/sを求めよ。", to_string(v0 + a * t)});
 
 		//x = v0t + 1/2 * at^2
 		v0 = uniform_int_distribution<>(5, 20)(rd);
 		a = uniform_int_distribution<>(1, 5)(rd);
 		t = uniform_int_distribution<>(1, 10)(rd);
-		questions.push_back({ "秒速" + to_string(v0) + "mで移動していた車が、進行方向に大きさ" + to_string(a) + "m/sで等加速度直線運動を始めた。\n加速を始めてから" + to_string(t) + "秒後までに移動した距離をm単位で求めよ。", to_string(v0 * t + a * t * t / 2) });
+		questions.push_back({ "秒速" + to_string(v0) + "mで移動していた車が、進行方向に大きさ" + to_string(a) + "m/s^2で等加速度直線運動を始めた。\n加速を始めてから" + to_string(t) + "秒後までに移動した距離をm単位で求めよ。", to_string(v0 * t + a * t * t / 2) });
 
 		//v^2 - v0^2 = 2ax
 		a = -uniform_int_distribution<>(1, 5)(rd) * 2;
 		t = uniform_int_distribution<>(1, 10)(rd);
 		v0 = -a * t;
 		questions.push_back({ "秒速" + to_string(v0) + "mで移動していた車がブレーキをかけたところ、"+ to_string(v0 * t + a * t * t / 2) + "m進んで停止した。\nブレーキの加速度m/s^2を求めよ。", to_string(a) });
+	}
+
+	//重力加速度
+	{
+		int t = uniform_int_distribution<>(1, 10)(rd);	//移動時間
+		int x = 98 * t * t / 2;		//小数点第1位までを整数として表す
+		string answer = to_string(x / 10);
+		if (x % 10)
+		{
+			answer += '.';
+			answer += '0' + x % 10;
+		}
+		questions.push_back({ "重力加速度を9.8m/s^2とし、空気抵抗はないものとする。\n十分に高い位置から物体を静かに落とすと、物体は" + to_string(t) + "秒間でXm落下する。\n" + "Xの値を小数点以下第1位まで求めよ。", answer });
+
+		int v0 = uniform_int_distribution<>(1, 10)(rd);		//初速
+		t = uniform_int_distribution<>(1, 10)(rd);			//移動時間
+		int v = v0 * 10 - 98 * t;
+		answer.clear();
+		if (v < 0)
+		{
+			v = -v;
+			answer = '.';
+		}
+		answer += to_string(v / 10);
+		if (v % 10)
+		{
+			answer += '.';
+			answer += '0' + v % 10;
+		}
+		questions.push_back({ "重力加速度を9.8m/s^2とし、空気抵抗はないものとする。\n初速" + to_string(v0) + "m/sで物体を鉛直に投げたとき、" + to_string(t) + "秒後の物体の速度はXm/sである。\nXの値を小数点以下第1位まで求めよ。", answer });
 	}
 	return questions;
 }
