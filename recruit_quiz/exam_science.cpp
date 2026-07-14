@@ -74,5 +74,20 @@ QuestionList CreatePhysicsExam()
 		}
 		questions.push_back({ "重力加速度を9.8m/s^2とし、空気抵抗はないものとする。\n初速" + to_string(v0) + "m/sで物体を鉛直に投げたとき、" + to_string(t) + "秒後の物体の速度はXm/sである。\nXの値を小数点以下第1位まで求めよ。", answer });
 	}
+
+	//浮力
+	{
+		int s = uniform_int_distribution<>(5, 20)(rd);
+		int h = uniform_int_distribution<>(2, 10)(rd);
+		int v = s * h + 5;
+		string answer = to_string(v / 100);
+		v /= 10;
+		if (v % 10)
+		{
+			answer += '.';
+			answer += '0' + v % 10;
+		}
+		questions.push_back({ "質量100gにはたらく重力を1Nとする。\n底面積" + to_string(s) + "cm^2、高さ" + to_string(h) + "cmの円柱を完全に水中に沈めた。\nこのとき、この円柱にはたらく浮力はxNである。\nxの値を小数点以下第2位までを四捨五入して求めよ。", answer});
+	}
 	return questions;
 }
