@@ -51,3 +51,27 @@ vector<int> CreateWrongIndices(int n, int correctIndex)
 
 	return indices;
 }
+
+//文字列を分割する
+vector <string> Split(const string& s, char c)
+{
+	vector<string> v;
+
+	//すべての文字列をループ処理
+	auto begin = s.begin();
+	const auto end = s.end();
+	for (auto p = begin; p != end; ++p)
+	{
+		//区切り文字の前までを文字列として分割
+		if (*p == c)
+		{
+			v.push_back(string(begin, p));
+			begin = p + 1;
+		}
+	}
+
+	//残りの部分を配列に追加
+	v.push_back(string(begin, end));
+
+	return v;
+}
