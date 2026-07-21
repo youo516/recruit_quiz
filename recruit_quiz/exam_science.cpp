@@ -114,5 +114,38 @@ QuestionList CreatePhysicsExam()
 		}
 		questions.push_back({ "密度" + to_string(p0) + "kg/m^3、底面積" + to_string(s) + "cm^2、高さ" + to_string(h) + "cmの物体を水に沈めようとしたところ、Xcm沈んで静止した。\nXの値を小数点以下第1位まで求めよ。", answer });
 	}
+
+	//ばね
+	{
+		int a = uniform_int_distribution<>(10, 30)(rd);
+		int x = uniform_int_distribution<>(1, a / 2)(rd);
+		int m = uniform_int_distribution<>(1, 20)(rd);
+		int k = 100 * m / x + 5;
+		string answer = to_string(k / 100);
+		k /= 10;
+		if (k % 10)
+		{
+			answer += '.';
+			answer += '0' + k % 10;
+		}
+		questions.push_back({ "重力加速度を10m/s^2とする。\n長さ" + to_string(x) + "cmのばねの先端に" + to_string(m) + "gのおもりを付けて、天井から吊り下げた。\nすると、ばねの長さが" + to_string(a + x) + "cmになった。\nこのばねの「ばね定数」を小数点以下第2位を四捨五入して求めよ。", answer });
+
+		int k1 = uniform_int_distribution<>(1, 10)(rd);
+		int k2 = uniform_int_distribution<>(1, 9)(rd);
+		if (k2 >= k1)
+		{
+			k2++;
+		}
+		m = uniform_int_distribution<>(1, 10)(rd) * 10;
+		x = 100 * m * (k1 + k2) / (k1 + k2) + 5;
+		answer = to_string(x / 100);
+		x /= 10;
+		if (x % 10)
+		{
+			answer += '.';
+			answer += '0' + x % 10;
+		}
+		questions.push_back({ "重力加速度を10m/s^2とする。\nばね定数が" + to_string(k1) + "と" + to_string(k2) + "の二つのばねを直列につなぎ、" + to_string(m) + "gのおもりを付けて天井から吊り下げた。\nすると、ばねの長さが合わせてXcm伸びて静止した。\nXの値を小数点以下第2位を四捨五入して求めよ。", answer });
+	}
 	return questions;
 }
