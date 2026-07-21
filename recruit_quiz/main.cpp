@@ -3,6 +3,7 @@
 #include <vector>
 #include <random>
 #include "question.h"
+#include "utility.h"
 #include "exam_japanese.h"
 #include "exam_english.h"
 #include "exam_science.h"
@@ -141,6 +142,15 @@ int main()
 
 		string answer;
 		cin >> answer;
+
+		//“ü—Í‚³‚ê‚½“š‚¦‚ğSJIS‚©‚çASCII‚É•ÏŠ·
+		const string ascii = ConvertSjisNumberToAscii(answer);
+
+		//•ÏŠ·‚ª¬Œ÷‚µ‚½ê‡‚ÍASCII•¶š—ñ‚É’u‚«Š·‚¦‚é
+		if (!ascii.empty())
+		{
+			answer = ascii;
+		}
 
 		if (answer == e.a)
 		{
