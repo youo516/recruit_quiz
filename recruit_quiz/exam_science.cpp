@@ -100,6 +100,19 @@ QuestionList CreatePhysicsExam()
 			answer += '0' + z % 10;
 		}
 		questions.push_back({ "質量100gの物体にはたらく重力を1Nとする。\nある物体の重さをばねはかりで量ると、" + to_string(x) + "gを示した。\nこのとき、物体にはたらく浮力はxNである。\n" + "xの値を小数点以下第2位までを四捨五入して求めよ。", answer });
+
+		int p0 = uniform_int_distribution<>(1, 9)(rd);
+		s = uniform_int_distribution<>(5, 10)(rd);
+		h = uniform_int_distribution<>(5, 10)(rd);
+		z = h * p0 + 50;
+		answer = to_string(z / 1000);
+		z /= 100;
+		if (z % 10)
+		{
+			answer += '.';
+			answer += '0' + z % 10;
+		}
+		questions.push_back({ "密度" + to_string(p0) + "kg/m^3、底面積" + to_string(s) + "cm^2、高さ" + to_string(h) + "cmの物体を水に沈めようとしたところ、Xcm沈んで静止した。\nXの値を小数点以下第1位まで求めよ。", answer });
 	}
 	return questions;
 }
