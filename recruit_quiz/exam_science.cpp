@@ -146,6 +146,19 @@ QuestionList CreatePhysicsExam()
 			answer += '0' + x % 10;
 		}
 		questions.push_back({ "重力加速度を10m/s^2とする。\nばね定数が" + to_string(k1) + "と" + to_string(k2) + "の二つのばねを直列につなぎ、" + to_string(m) + "gのおもりを付けて天井から吊り下げた。\nすると、ばねの長さが合わせてXcm伸びて静止した。\nXの値を小数点以下第2位を四捨五入して求めよ。", answer });
+
+		k1 = uniform_int_distribution<>(1, 10)(rd);
+		k2 = uniform_int_distribution<>(1, 10)(rd);
+		m = uniform_int_distribution<>(1, 10)(rd) * 10;
+		x = 100 * m/ (k1 + k2) + 5;
+		answer = to_string(x / 100);
+		x /= 10;
+		if (x % 10)
+		{
+			answer += '.';
+			answer += '0' + x % 10;
+		}
+		questions.push_back({ "重量加速度を10m/s^2とする。\nばね定数が" + to_string(k1) + "と" + to_string(k2) + "の二本のばねを水平な天井に固定し、ばねの下端に木の棒を水平に取り付けた。\nこの棒の中央に質量" + to_string(m) + "gのおもりを吊り下げた。\nすると、ばねの長さがそれぞれXcmだけ伸びて静止した。\nXの値を小数点以下第2位を四捨五入して求めよ。", answer });
 	}
 	return questions;
 }
