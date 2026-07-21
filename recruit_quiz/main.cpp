@@ -7,6 +7,7 @@
 #include "exam_english.h"
 #include "exam_science.h"
 #include "exam_geography.h"
+#include "exam_politics.h"
 using namespace std;
 
 //最大公約数を求める
@@ -100,7 +101,7 @@ int main()
 
 	cout << "[リクルート試験対策クイズ]\n";
 
-	cout << "教科を選んでください\n1.数学\n2.国語\n3.英語\n4.理科\n5.地理\n";
+	cout << "教科を選んでください\n1.数学\n2.国語\n3.英語\n4.理科\n5.地理\n6.政治\n";
 	int subject;
 	cin >> subject;
 	if (subject == 2)
@@ -128,6 +129,10 @@ int main()
 	else if (subject == 5)
 	{
 		questions = CreatePrefecturesExam();
+	}
+	else if (subject == 6)
+	{
+		questions = CreatePoliticsExam();
 	}
 
 	for (const auto& e : questions)
