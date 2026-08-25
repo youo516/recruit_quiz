@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <fstream>
+#include <time.h>
 #include "question.h"
 #include "utility.h"
 #include "exam_mathematics.h"
@@ -149,5 +151,53 @@ int main()
 			totalCorrectCnt += correctCnt[i];
 		}
 		cout << "合計:" << totalCorrectCnt << "/" << questions.size() << "\n";
+	}
+
+	//成績をファイルに出力する
+	static const char filename[] = "リクルート対策試験成績表.txt";
+	ofstream ofs(filename, ios_base::app);
+	if (!ofs)
+	{
+		cerr << "Error:" << filename << "を開けません\n";
+	}
+	else
+	{
+		//現在の時刻を取得
+		const time_t t = time(nullptr);
+
+		//協定世界時刻を時間構造体に変換
+		tm examDate;
+		localtime_s(&examDate, &t);
+
+		//時間構造体を文字列に変換
+		char strDate[100];
+		strftime(strDate, size(strDate), "%Y/%m/%d(%a) %T", &examDate);
+
+		if (subject > 0 && subject <= size(subjectData))
+		{
+			//教科テストの場合、試験した教科の成績だけを出力し、それ以外は空欄とする
+			ofs << strDate;
+			for (int i = 0; i < size(subjectData); i++)
+			{
+				ofs << ',';
+				if (i == subject - 1)
+				{
+					ofs << correctCnt[0] << '/' << questions.size();
+				}
+			}
+			ofs << '\n';
+			cout << "成績を" << filename << "に出力しました\n";
+		}
+		else if (subject == 0)
+		{
+			//総合テストの場合、すべての強化の成績を出力
+			ofs << strDate;
+			for (int i = 0; i < size(subjectData); i++)
+			{
+				ofs << ',' << correctCnt[i] << '/' << questionCnt[i];
+			}
+			ofs << '\n';
+			cout << "成績を" << filename << "に出力しました\n";
+		}
 	}
 }
