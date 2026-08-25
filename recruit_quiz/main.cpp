@@ -42,6 +42,7 @@ int main()
 		cout << i + 1 << '=' << subjectData[i].name << '\n';
 	}
 
+	vector<int> questionCnt(size(subjectData));
 	int subject;
 	cin >> subject;
 
@@ -56,9 +57,13 @@ int main()
 		{
 			QuestionList tmp = subjectData[i].create();
 			questions.insert(questions.end(), tmp.begin(), tmp.end());
+			questionCnt[i] = (int)tmp.size();
 		}
 	}
 
+	vector<int> correctCnt(size(subjectData));
+	int currentSubjectNo = 0;
+	int currentAnsweredCnt = 0;
 	for (const auto& e : questions)
 	{
 		cout << e.q << "\n";
@@ -78,6 +83,7 @@ int main()
 		if (answer == e.a)
 		{
 			cout << "正解!\n";
+			correctCnt[currentSubjectNo]++;
 		}
 		else if (e.b.empty())
 		{
@@ -100,6 +106,7 @@ int main()
 			if (isMatch)
 			{
 				cout << "正解!\n";
+				correctCnt[currentSubjectNo]++;
 			}
 			else
 			{
@@ -113,5 +120,32 @@ int main()
 				cout << ")\n";
 			}
 		}
+
+		//回答数が教科の問題数以上になったら次の強化に進む
+		if (subject == 0)
+		{
+			currentAnsweredCnt++;
+			if (currentAnsweredCnt >= questionCnt[currentSubjectNo])
+			{
+				currentSubjectNo++;
+				currentAnsweredCnt = 0;
+			}
+		}
 	}	//for questions
+
+	//成績を表示
+	cout << "\n---成績---\n";
+	if (subject > 0 && subject <= size(subjectData))
+	{
+		cout << subjectData[subject - 1].name << ":" << correctCnt[0] << "/" << questions.size() << "/n";
+	}
+	else if (subject == 0)
+	{
+		//教科ごとの成績を表示しつつ、正答数の合計を表示
+		size_t totalCorrectCnt = 0;
+		for (int i = 0; i < size(subjectData); i++)
+		{
+			cout << subjectData[i].name << ":" << correctCnt[i] << "/" << questionCnt[i] << "l ";
+		}
+	}
 }
