@@ -145,7 +145,9 @@ int main()
 		size_t totalCorrectCnt = 0;
 		for (int i = 0; i < size(subjectData); i++)
 		{
-			cout << subjectData[i].name << ":" << correctCnt[i] << "/" << questionCnt[i] << "l ";
+			cout << subjectData[i].name << ":" << correctCnt[i] << "/" << questionCnt[i] << "\n";
+			totalCorrectCnt += correctCnt[i];
 		}
+		cout << "‡Œv:" << totalCorrectCnt << "/" << questions.size() << "\n";
 	}
 }
