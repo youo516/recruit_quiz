@@ -15,41 +15,38 @@ using namespace std;
 
 int main()
 {
+	//教科データ配列
+	static const struct
+	{
+		const char* name;
+		QuestionList(*create)();
+	}subjectData[] = {
+		{"数学", CreateMathematicsExam},
+		{"国語", CreateJapaneseExam},
+		{"英語", CreateEnglishExam},
+		{"物理", CreatePhysicsExam},
+		{"地理", CreatePrefecturesExam},
+		{"政治", CreatePoliticsExam},
+		{"経済", CreateEconomicsExam},
+	};
+
 	vector<Question> questions(3);
 
 	cout << "[リクルート試験対策クイズ]\n";
 
-	cout << "教科を選んでください\n1.数学\n2.国語\n3.英語\n4.理科\n5.地理\n6.政治\n7.経済\n";
+	cout << "教科を選んでください\n";
+
+	for (int i = 0; i < size(subjectData); i++)
+	{
+		cout << i + 1 << '=' << subjectData[i].name << '\n';
+	}
+
 	int subject;
 	cin >> subject;
 
-	if (subject == 1)
+	if (subject > 0 && subject <= size(subjectData))
 	{
-		questions = CreateMathematicsExam();
-	}
-	else if (subject == 2)
-	{
-		questions = CreateJapaneseExam();
-	}
-	else if (subject == 3)
-	{
-		questions = CreateEnglishExam();
-	}
-	else if (subject == 4)
-	{
-		questions = CreatePhysicsExam();
-	}
-	else if (subject == 5)
-	{
-		questions = CreatePrefecturesExam();
-	}
-	else if (subject == 6)
-	{
-		questions = CreatePoliticsExam();
-	}
-	else if (subject == 7)
-	{
-		questions = CreateEconomicsExam();
+		questions = subjectData[subject - 1].create();
 	}
 
 	for (const auto& e : questions)
