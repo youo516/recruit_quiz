@@ -64,7 +64,7 @@ QuestionList CreatePhysicsExam()
 		if (v < 0)
 		{
 			v = -v;
-			answer = '.';
+			answer = '-';
 		}
 		answer += to_string(v / 10);
 		if (v % 10)
@@ -87,7 +87,7 @@ QuestionList CreatePhysicsExam()
 			answer += '.';
 			answer += '0' + v % 10;
 		}
-		questions.push_back({ "質量100gにはたらく重力を1Nとする。\n底面積" + to_string(s) + "cm^2、高さ" + to_string(h) + "cmの円柱を完全に水中に沈めた。\nこのとき、この円柱にはたらく浮力はxNである。\nxの値を小数点以下第2位までを四捨五入して求めよ。", answer});
+		questions.push_back({ "質量100gの物体にはたらく重力を1Nとする。\n底面積" + to_string(s) + "cm^2、高さ" + to_string(h) + "cmの円柱を完全に水中に沈めた。\nこのとき、この円柱にはたらく浮力はxNである。\nxの値を小数点以下第2位までを四捨五入して求めよ。", answer});
 	
 		int x = uniform_int_distribution<>(20, 50)(rd) * 10;
 		int y = uniform_int_distribution<>(x / 2, x - 1)(rd);
@@ -99,7 +99,7 @@ QuestionList CreatePhysicsExam()
 			answer += '.';
 			answer += '0' + z % 10;
 		}
-		questions.push_back({ "質量100gの物体にはたらく重力を1Nとする。\nある物体の重さをばねはかりで量ると、" + to_string(x) + "gを示した。\nこのとき、物体にはたらく浮力はxNである。\n" + "xの値を小数点以下第2位までを四捨五入して求めよ。", answer });
+		questions.push_back({ "質量100gの物体にはたらく重力を1Nとする。\nある物体の重さをばねはかりで量ると、" + to_string(x) + "gを示した。\nこの物体を完全に水に入れたところ、ばねはかりは" + to_string(y) + "gを示した。\nこのとき、物体にはたらく浮力はXNである。\n" + "xの値を小数点以下第2位を四捨五入して求めよ。", answer });
 
 		int p0 = uniform_int_distribution<>(1, 9)(rd);
 		s = uniform_int_distribution<>(5, 10)(rd);
@@ -137,7 +137,7 @@ QuestionList CreatePhysicsExam()
 			k2++;
 		}
 		m = uniform_int_distribution<>(1, 10)(rd) * 10;
-		x = 100 * m * (k1 + k2) / (k1 + k2) + 5;
+		x = 100 * m * (k1 + k2) / (k1 * k2) + 5;
 		answer = to_string(x / 100);
 		x /= 10;
 		if (x % 10)

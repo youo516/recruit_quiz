@@ -89,7 +89,7 @@ QuestionList CreateMathematicsExam()
 	}
 	for (int i = 0; i < y; i++)
 	{
-		z /= y - 1;
+		z /= y - i;
 	}
 	questions.push_back({ to_string(x) + "人のうち" + to_string(y) + "人を選ぶ組み合わせは何通りあるか調べよ。", to_string(z) });
 
